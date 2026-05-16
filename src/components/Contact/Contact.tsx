@@ -1,5 +1,6 @@
 import { useState, lazy, Suspense, type FormEvent } from 'react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { useMagnetic } from '../../hooks/useMagnetic';
 import { SectionCaption } from '../Layout/SectionCaption';
 
 const BavariaMap = lazy(() =>
@@ -8,6 +9,7 @@ const BavariaMap = lazy(() =>
 
 export function Contact() {
   const ref = useScrollReveal<HTMLDivElement>({ stagger: 100 });
+  const submitMagnetic = useMagnetic<HTMLButtonElement>({ strength: 0.35 });
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -105,7 +107,7 @@ export function Contact() {
                   <textarea id="message" name="message" rows={3} />
                   {errors.message && <span className="text-accent text-sm">{errors.message}</span>}
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button ref={submitMagnetic} type="submit" className="btn btn-primary" data-cursor-hover>
                   Anfrage senden
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

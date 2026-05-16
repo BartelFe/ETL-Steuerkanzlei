@@ -1,8 +1,10 @@
 import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { useMagnetic } from '../../hooks/useMagnetic';
 import { SectionCaption } from '../Layout/SectionCaption';
 
 export function Career() {
   const ref = useScrollReveal<HTMLDivElement>({ stagger: 120 });
+  const magneticCta = useMagnetic<HTMLAnchorElement>({ strength: 0.35 });
 
   return (
     <section id="karriere" className="relative">
@@ -36,7 +38,7 @@ export function Career() {
                 das jeden Tag betont werden muss.
               </p>
               <div data-reveal>
-                <a href="#" className="btn btn-ghost">
+                <a ref={magneticCta} href="#" className="btn btn-ghost" data-cursor-hover>
                   Offene Stellen ansehen
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
